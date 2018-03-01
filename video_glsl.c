@@ -589,8 +589,8 @@ void VIDEO_GLSL_Setup() {
     }else
         UTIL_LogOutput(LOGLEVEL_DEBUG, "GL_EXTENSIONS:%s\n",glGetString(GL_EXTENSIONS));
     
-    // both iOS/ANGLE emulated GLES2 supports VAO extension
-#if __ANDROID__ || __WINRT__ || MGL_SUPPORT_OPENGL_ON_METAL
+    // iOS native GLES supports VAO extension
+#if __ANDROID__ || __WINRT__ || MGL_SUPPORT_OPENGL_ON_METAL || __EMSCRIPTEN__
     if(!strncmp(glversion, "OpenGL ES", 9)) {
         SDL_sscanf(glversion, "OpenGL ES %d.%d", &glversion_major, &glversion_minor);
         if( glversion_major <= 2)
